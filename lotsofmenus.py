@@ -8,7 +8,7 @@ engine = create_engine('sqlite:///restaurantmenu.db')
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
  
-DBSession = sessionmaker(bind=engine)
+DBSession = sessionmaker(bind = engine)
 # A DBSession() instance establishes all conversations with the database
 # and represents a "staging zone" for all the objects loaded into the
 # database session object. Any change made against the objects in the
