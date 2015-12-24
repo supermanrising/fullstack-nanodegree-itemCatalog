@@ -1,0 +1,22 @@
+<html>
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<div class="pane">
+		<h1>Edit {{item.name}}</h1>
+		<form action="{{url_for('editMenuItem', restaurant_id = item.restaurant_id, menu_id = item.id)}}" method="POST">
+			<p>Name:</p>
+			<input type="text" name="name" value="{{item.name}}">
+			<p>Price:</p>
+			<input type="text" name="price" value="{{item.price}}">
+			<p>Description:</p>
+			<input type="text" name="description" value="{{item.description}}">
+			<p>Course:</p>
+			<input type="text" name="course" value="{{item.course}}">
+			<br><br>
+			<input type="submit" value="Edit">
+		</form>
+
+</body>
+</html>

@@ -76,8 +76,8 @@ DELETE
 To delete an item from our database we must follow the following steps:
 
 Find the entry
-Session.delete(Entry)
-Session.commit()
+session.delete(Entry)
+session.commit()
 
 We deleted spinach Ice Cream from our Menu Items database with the following operations:
 
