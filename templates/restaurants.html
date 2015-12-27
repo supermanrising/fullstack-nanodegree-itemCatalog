@@ -1,31 +1,52 @@
-<html>
-<head>
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-	<div class="pane">
-		<h1>Restaurants</h1>
-
+{% extends "main.html" %}
+{% block content %}
+	{% include "header.html" %}
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right"></div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Restaurants</h1>
+		</div>
+	</div>
+	<div class="flash">
 		{% with messages = get_flashed_messages() %}
-		  {% if messages %}
-		    <ul class=flashes>
-		    {% for message in messages %}
-		      <li>{{ message }}</li>
-		    {% endfor %}
-		    </ul>
-		  {% endif %}
+			{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+						<li><strong>{{ message }}</strong></li>
+					{% endfor %}
+				</ul>
+			{% endif %}
 		{% endwith %}
-
-		<a href="{{url_for('newRestaurant')}}">Create New Restaurant</a>
-
-		{% for r in restaurants %}
-
-		<h3><a href="{{url_for('showMenu', restaurant_id = r.id)}}">{{r.name}}</a></h3>
-		<a href="{{url_for('editRestaurant', restaurant_id = r.id)}}">Edit</a>
-		<a href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">Delete</a>
-
-		{% endfor %}
 	</div>
 
-</body>
-</html>
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 padding-none">
+			<a href="{{url_for('newRestaurant')}}">
+				<button class="btn btn-default" id="new-restaurant">
+					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Restaurant
+				</button>
+			</a>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+	{% for restaurant in restaurants %}
+		<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}">
+			<div class="row">
+				<div class="col-md-1"></div>
+					<div class="col-md-10 restaurant-list">
+						<h3>{{restaurant.name}}</h3>
+					</div>
+				<div class="col-md-1"></div>
+			</div>
+		</a>
+	{% endfor %}
+{% endblock %}
